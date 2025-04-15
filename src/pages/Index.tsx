@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
@@ -99,13 +98,13 @@ const Index = () => {
   };
 
   const morseConverterFunctions = {
-    textToMorse: morseCode.toMorse,
-    morseToText: morseCode.fromMorse
+    textToMorse: (input: string) => morseCode.toMorse(input),
+    morseToText: (input: string) => morseCode.fromMorse(input)
   };
 
   const brailleConverterFunctions = {
-    textToBraille: braille.toBraille,
-    brailleToText: braille.fromBraille
+    textToBraille: (input: string) => braille.toBraille(input),
+    brailleToText: (input: string) => braille.fromBraille(input)
   };
 
   return (

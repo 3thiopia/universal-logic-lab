@@ -60,15 +60,19 @@ export function LogicConverter({
           return;
         }
         
-        // Get the converter function for this conversion pair
-        const convertFunction = converterFunctions[`${fromType}To${toType}`];
-        if (convertFunction) {
-          const convertedValue = convertFunction(inputValue);
+        // Get the correct converter function key based on fromType and toType
+        const convertFunctionKey = `${fromType}To${toType}`;
+        
+        // Check if the converter function exists
+        if (converterFunctions[convertFunctionKey]) {
+          const convertedValue = converterFunctions[convertFunctionKey](inputValue);
           setResult(convertedValue);
         } else {
           setResult("Conversion not supported");
+          console.log(`Conversion from ${fromType} to ${toType} not supported. Available functions:`, Object.keys(converterFunctions));
         }
       } catch (e) {
+        console.error("Conversion error:", e);
         setResult("Error in conversion");
       }
     } else {
