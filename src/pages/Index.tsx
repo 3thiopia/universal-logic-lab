@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
@@ -86,6 +87,7 @@ const Index = () => {
     { id: 'octal', label: 'Octal' }
   ];
 
+  // Fix the roman numeral converter functions
   const romanConverterFunctions = {
     arabicToRoman: (input: string) => {
       const num = parseInt(input, 10);
@@ -97,11 +99,13 @@ const Index = () => {
     }
   };
 
+  // Fix the morse code converter functions
   const morseConverterFunctions = {
     textToMorse: (input: string) => morseCode.toMorse(input),
     morseToText: (input: string) => morseCode.fromMorse(input)
   };
 
+  // Fix the braille converter functions
   const brailleConverterFunctions = {
     textToBraille: (input: string) => braille.toBraille(input),
     brailleToText: (input: string) => braille.fromBraille(input)

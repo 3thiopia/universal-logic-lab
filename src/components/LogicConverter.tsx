@@ -47,16 +47,46 @@ export function LogicConverter({
           return;
         }
         
-        // Get the correct converter function key based on fromType and toType
-        const convertFunctionKey = `${fromType}To${toType}`;
+        // Fix: First try the exact conversion function key
+        const exactKey = `${fromType}To${toType}`;
         
-        // Check if the converter function exists
-        if (converterFunctions[convertFunctionKey]) {
-          const convertedValue = converterFunctions[convertFunctionKey](inputValue);
+        // Then try other naming conventions that might be used
+        const capitalizedFrom = fromType.charAt(0).toUpperCase() + fromType.slice(1);
+        const capitalizedTo = toType.charAt(0).toUpperCase() + toType.slice(1);
+        const alternativeKey1 = `${fromType}To${capitalizedTo}`;
+        const alternativeKey2 = `${capitalizedFrom}To${toType}`;
+        const alternativeKey3 = `${capitalizedFrom}To${capitalizedTo}`;
+        
+        // For Roman numerals and other special converters
+        const specialKey1 = `${fromType}To${toType.charAt(0).toUpperCase() + toType.slice(1)}`;
+        const specialKey2 = `${fromType}_to_${toType}`;
+        
+        // Attempt to get the correct conversion function
+        const keys = [exactKey, alternativeKey1, alternativeKey2, alternativeKey3, specialKey1, specialKey2];
+        let conversionFunction = null;
+        
+        for (const key of keys) {
+          if (converterFunctions[key]) {
+            conversionFunction = converterFunctions[key];
+            break;
+          }
+        }
+        
+        if (conversionFunction) {
+          const convertedValue = conversionFunction(inputValue);
           setResult(convertedValue);
         } else {
-          setResult("Conversion not supported");
-          console.log(`Conversion from ${fromType} to ${toType} not supported. Available functions:`, Object.keys(converterFunctions));
+          // If no conversion function is found, try alternative approach
+          // This is for special cases like "text" to "braille" using textToBraille
+          const directKey = `${fromType}${toType.charAt(0).toUpperCase() + toType.slice(1)}`;
+          
+          if (converterFunctions[directKey]) {
+            const convertedValue = converterFunctions[directKey](inputValue);
+            setResult(convertedValue);
+          } else {
+            console.log(`Conversion from ${fromType} to ${toType} not supported. Available functions:`, Object.keys(converterFunctions));
+            setResult("Conversion not supported");
+          }
         }
       } catch (e) {
         console.error("Conversion error:", e);
