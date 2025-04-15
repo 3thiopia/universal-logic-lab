@@ -1,8 +1,36 @@
-# Welcome to your Lovable project
+# Universal Logic Lab - All-in-One Converter
 
-## Project info
+A comprehensive unit and logic conversion web app that works completely offline. Convert anything from length and temperature to binary and Morse code with a beautiful and responsive UI.
 
-**URL**: https://lovable.dev/projects/1c04ba30-4351-48c3-9a5c-d6b039ea9bc9
+**Live URL**: https://lovable.dev/projects/1c04ba30-4351-48c3-9a5c-d6b039ea9bc9
+
+## Features
+
+### Unit Converters
+- Length (meters, feet, inches, etc.)
+- Weight / Mass (kilograms, pounds, etc.)
+- Temperature (Celsius, Fahrenheit, Kelvin)
+- Speed (km/h, mph, etc.)
+- Area (square meters, acres, etc.)
+- Volume (liters, gallons, etc.)
+- Time (seconds, minutes, days, etc.)
+- Digital Storage (bytes, MB, GB, etc.)
+- Energy (joules, calories, etc.)
+- Pressure (pascals, psi, atm, etc.)
+
+### Logic Converters
+- Binary ↔ Decimal ↔ Hex ↔ Octal
+- Roman Numerals ↔ Arabic Numbers
+- Text ↔ Morse Code
+- Text ↔ Braille (ASCII representation)
+
+## Key Technical Features
+- 100% offline functionality - no API calls
+- Light/dark mode with smooth transitions
+- Responsive design for all devices
+- Copy-to-clipboard functionality with toast notifications
+- SEO optimized with proper metadata
+- Ad-placement ready design
 
 ## How can I edit this code?
 
